@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      position: relative;
+      width: 200px;
+      height: 300px;
+      overflow: hidden;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-text {
+      position: absolute;
+      top: 2%;
+      left: 30%;
+      transform: translate(-20%, -30%);
+      color: black;
+      font-weight: black chanceary;
+    }
+
+    .card.zoomed {
+      transform: scale(1.2);
+    }
+
+    .card.fullscreen {
+      cursor: auto;
+      z-index: 2;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+  <title></title>
+</head>
+<body> 
+ 
+  <div class="card" id="card1">
+    <img src="https://wallup.net/wp-content/uploads/2019/09/760050-apartment-condo-interior-design-house-building-architecture-1.jpg" alt="Card 1">
+    <div class="card-text">Town Ville</div>
+  </div>
+  <div class="card" id="card2">
+    <img src="https://th.bing.com/th/id/R.2ec11c3c92c11bfb5bab1b57e6bd4456?rik=Qk2lmG%2fIEd6d0A&riu=http%3a%2f%2fyesofcorsa.com%2fwp-content%2fuploads%2f2018%2f02%2fBungalow-Wallpaper-Free.jpg&ehk=%2fE0kbqNicePbQqFiMbzpMX5WSLu6eejFbtrhgUnsPco%3d&risl=&pid=ImgRaw&r=0" alt="Card 2">
+    <div class="card-text">The Gable</div>
+  </div>
+  <div class="card" id="card3">
+    <img src="https://i.pinimg.com/564x/95/8d/28/958d28941fda1913e91035db739b4f1e.jpg" alt="Card 3">
+    <div class="card-text">The Light Side</div>
+  </div>
+  <div class="card" id="card4">
+    <img src="https://3dhunt.co/static/2018/08/d3073184d9b8d0551e6cce78a86655bd.jpeg" alt="Card 4">
+    <div class="card-text">Barton Villa</div>
+  </div>
+  <div class="card" id="card5">
+    <img src="https://i.pinimg.com/originals/38/f9/df/38f9dffb20571f891bec1743f9614086.jpg" alt="Card 5">
+    <div class="card-text">Lilac Cottage</div>
+  </div>
+  <div class="card" id="card6">
+    <img src="https://th.bing.com/th/id/R.e0b2313cc44c4f0976506efde31be8e0?rik=WEkgEqmuGVtg9A&riu=http%3a%2f%2fwww.keralahouseplanner.com%2fwp-content%2fuploads%2f2013%2f06%2fmodern-kerala-home-design.jpg&ehk=maGm7yj5qiToj159KcP%2bfpp46J1uuSpPPBUNsRbQO0Y%3d&risl=&pid=ImgRaw&r=0" alt="Card 6">
+    <div class="card-text">Barton Villa</div>
+  </div> 
+  <div class="card" id="card7">
+    <img src="https://2.bp.blogspot.com/-l3O1Pyub0fY/U2JpPVuCvyI/AAAAAAAAPRo/4zSAUGD0XcI/s1600/house+designs+for+hilly+areas.jpg" alt="Card 7">
+    <div class="card-text ">Darth Vader House</div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+        card.addEventListener('click', function () {
+          this.classList.toggle('zoomed');
+        });
+
+        card.addEventListener('dblclick', function () {
+          if (!this.classList.contains('fullscreen')) {
+            // Open the image in a new web page in fullscreen mode
+            const imageUrl = this.querySelector('img').src;
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write('<html><head><title>Fullscreen Image</title></head><body style="margin:0;background:#000;"><img src="' + imageUrl + '" style="width:100%;height:100%;object-fit:contain;"></body></html>');
+            this.classList.add('fullscreen');
+          } else {
+            // Revert to the original position
+            this.classList.remove('fullscreen');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
